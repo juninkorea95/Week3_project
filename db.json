@@ -1,24 +1,14 @@
 {
   "todos": [
     {
-      "id": 1676813564202,
-      "title": "리액트",
-      "content": "리액트 공부하기"
+      "id": 1676827999573,
+      "title": "asdfas",
+      "content": "dfadsfads"
     },
     {
-      "id": 1676813573089,
-      "title": "알고리즘",
-      "content": "알고리즘 공부하기"
-    },
-    {
-      "id": 1676813583687,
-      "title": "JS 이론",
-      "content": "JS 책 1회독!"
-    },
-    {
-      "id": 1676818795129,
-      "title": "dd",
-      "content": "dd"
+      "id": 1676828108588,
+      "title": "asdf",
+      "content": "afdsdfadsgd"
     }
   ]
 }

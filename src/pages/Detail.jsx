@@ -1,7 +1,9 @@
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
+// import axios from 'axios'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { __fetchTodos } from '../redux/modules/todosSlice'
 
 const FRAME = styled.div`
   display: flex;
@@ -31,16 +33,12 @@ margin-top: 20px;
 
 function Detail() {
   
-  const [data, setData] = useState([]);
-  
-  const fetchTodos = async () => {
-    const response = await axios.get('http://localhost:4000/todos');
-    setData(response.data);
-  }  
+  const dispatch = useDispatch()
+  const data = useSelector((state) => state.todos.todos)
 
   useEffect(() => {
-    fetchTodos();
-  },[])
+    dispatch(__fetchTodos());
+  },[dispatch])
 
   const param = useParams();
 
