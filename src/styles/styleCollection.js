@@ -76,6 +76,7 @@ const StButton = styled.button`
         border: none;
         cursor: pointer;
         text-Align: right;
+        margin-right: 20px;
 `
 
 

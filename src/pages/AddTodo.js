@@ -1,13 +1,14 @@
 // 할 일 추가하는 페이지 
 import { StTopBox, StInputBox, StTextBox, StButtonBox, StButton } from "../styles/styleCollection"
 import { Link, useNavigate } from "react-router-dom"
-// import { useState } from "react"
 import useInput from "../hooks/useInput"
-import axios from "axios"
+import { useDispatch } from "react-redux"
+import { __addTodo } from "../redux/modules/todosSlice"
 
 function AddTodo() {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [title, onChangeTitleHandler] = useInput({
         title: ''
@@ -16,12 +17,17 @@ function AddTodo() {
         content: ''
     })
 
-    const onSubmitButtonHandler = async (newTodo) => {
+    const onSubmitButtonHandler = (newTodo) => {
         if (newTodo.title ==='' || newTodo.content === '') {
             alert ('제목, 내용을 모두 입력해 주세요!')
         } else {
-            await axios.post('http://localhost:4000/todos', newTodo)
-            navigate('/todos') // Redirect to the Todos page
+            dispatch(__addTodo(newTodo))
+            .then(()=>{
+                navigate('/todos') // Redirect to the Todos page
+            })
+            .catch((error) => {
+                console.error('할 일 추가 실패', error)
+            })
         }
         
     }
