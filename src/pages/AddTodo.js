@@ -29,7 +29,6 @@ function AddTodo() {
                 console.error('할 일 추가 실패', error)
             })
         }
-        
     }
 
     return (
@@ -55,7 +54,8 @@ function AddTodo() {
         <StInputBox>
             <input 
             type='text'
-            placeholder="제목을 입력해 주세요(50자 이내)"
+            maxLength={"20"}
+            placeholder="제목을 입력해 주세요(20자 이내)"
             value = {title}
             onChange = {onChangeTitleHandler}
             />
@@ -66,7 +66,8 @@ function AddTodo() {
         <StInputBox>
             <input 
             type='text'
-            placeholder="내용을 입력해 주세요(200자 이내)"
+            maxLength={"100"}
+            placeholder="내용을 입력해 주세요(100자 이내)"
             value = {content}
             onChange = {onChangeContentHandler}
             />

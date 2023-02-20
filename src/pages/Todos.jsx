@@ -1,16 +1,18 @@
+// import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { StTopBox, StBox, StButton } from '../styles/styleCollection';
 import { Link } from 'react-router-dom';
 import { __fetchTodos, __deleteTodo } from '../redux/modules/todosSlice';
 
 function Todos() {
+
   const todos = useSelector((state) => state.todos.todos);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(__fetchTodos());
-  });
+  },[dispatch]);
 
   const deleteButtonHandler = async (id) => {
     await dispatch(__deleteTodo(id));

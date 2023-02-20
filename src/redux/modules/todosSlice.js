@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import api from '../../axios/api';
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
 
 // todo 추가 (개별 todo 조회도 이 함수를 이용함)
 export const __addTodo = createAsyncThunk(
   'todos/addTodo', 
   async (newTodo) => {
-    await axios.post('http://localhost:4000/todos', newTodo);
+    await api.post(`${SERVER_URL}/todos`, newTodo); 
     return newTodo;
   }
 );
@@ -14,7 +16,7 @@ export const __addTodo = createAsyncThunk(
 export const __fetchTodos = createAsyncThunk(
   'todos/fetchTodos',
   async () => {
-    const { data } = await axios.get('http://localhost:4000/todos');
+    const { data } = await api.get(`${SERVER_URL}/todos`); 
     return data;
   }
 );
@@ -23,7 +25,7 @@ export const __fetchTodos = createAsyncThunk(
 export const __deleteTodo = createAsyncThunk(
   'todos/deleteTodo',
   async (id) => {
-    await axios.delete(`http://localhost:4000/todos/${id}`);
+    await api.delete(`${SERVER_URL}/todos/${id}`); 
     return id;
   }
 );

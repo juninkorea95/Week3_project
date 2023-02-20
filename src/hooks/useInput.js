@@ -1,3 +1,5 @@
+// input 태그 두 개를 한꺼번에 관리하는 커스텀 훅 
+
 import { useState } from "react"
 
 const useInput = () => {
