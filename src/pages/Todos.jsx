@@ -16,7 +16,6 @@ function Todos() {
 
   const deleteButtonHandler = async (id) => {
     await dispatch(__deleteTodo(id));
-    await dispatch(__fetchTodos());
   };
 
 
