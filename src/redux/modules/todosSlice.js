@@ -16,7 +16,7 @@ export const __addTodo = createAsyncThunk(
 export const __fetchTodos = createAsyncThunk(
   'todos/fetchTodos',
   async () => {
-    const { data } = await api.get(`${SERVER_URL}/todos`); 
+    const { data } = await api.get('/todos'); 
     return data;
   }
 );
