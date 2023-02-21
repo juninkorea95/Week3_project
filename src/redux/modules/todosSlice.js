@@ -30,6 +30,16 @@ export const __deleteTodo = createAsyncThunk(
   }
 );
 
+// todo 수정
+export const __editTodo = createAsyncThunk (
+  'todos/editTodo',
+  async (updatedTodo) => {
+    const {id, ...data} = updatedTodo
+    await api.patch(`${SERVER_URL}/todos/${id}`, data);
+    return updatedTodo;
+  }
+);
+
 const initialState = {
   todos: [],
 };
@@ -48,6 +58,11 @@ export const todosSlice = createSlice({
       })
       .addCase(__deleteTodo.fulfilled, (state, action) => {
         state.todos = state.todos.filter((todo) => todo.id !== action.payload);
+      })
+      .addCase(__editTodo.fulfilled, (state, action) => {
+        const updatedTodo = action.payload;
+        const index = state.todos.findIndex((todo) => todo.id === updatedTodo.id);
+        state.todos[index] = updatedTodo;
       });
   },
 });

@@ -5,6 +5,7 @@ const StTopBox = styled.div`
     width: 1200px;
     height: 50px;
     border: 1px solid green;
+    border-radius: 5px;
     display: flex;
     align-Items: center;
     justify-Content: space-between;
@@ -18,6 +19,7 @@ const StBox = styled.div`
     width: 1200px;
     height: 100px;
     border: 2px solid gray;
+    border-radius: 5px;
     display: flex;
     align-Items: center;
     justify-content: space-between;

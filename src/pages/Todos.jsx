@@ -24,10 +24,12 @@ function Todos() {
     <>
       <StTopBox>
         <div>
-          <Link to={`/`}>Home</Link>
+          <Link to={`/`}
+          style={{ textDecoration: 'none', color: 'gray' }}>Home</Link>
         </div>
         <div>
-          <Link to={`/todos/Addtodo`}>할 일 추가</Link>
+          <Link to={`/todos/Addtodo`}
+          style={{ textDecoration: 'none', color: 'gray' }}>할 일 추가</Link>
         </div>
       </StTopBox>
 
@@ -38,7 +40,8 @@ function Todos() {
               <div>제목 : {todo.title}</div>
               <div>내용 : {todo.content}</div>
               <div>
-                <Link to={`/todos/${todo.id}`}>상세보기</Link>
+                <Link to={`/todos/${todo.id}`} 
+                style={{ textDecoration: 'none', color: 'red' }}>상세보기</Link>
               </div>
               <StButton onClick={() => deleteButtonHandler(todo.id)}>
                 삭제

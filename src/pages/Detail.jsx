@@ -1,32 +1,8 @@
 import { Link, useParams } from 'react-router-dom'
-import styled from 'styled-components'
 import { useSelector } from 'react-redux'
+import { StButton } from '../styles/styleCollection'
+import { StMiniFrame, StMiniBox, StReturnText } from '../styles/miniPageFrame';
 
-const FRAME = styled.div`
-  display: flex;
-  margin : 0 auto;
-  justify-content: center;
-  align-items: center;
-  width:1500px;
-  height: 800px;
-`
-
-const STBOX = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 50%;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`
-
-const RETURN = styled.div`
-margin-top: 20px;
-`
 
 function Detail() {
 
@@ -34,21 +10,26 @@ function Detail() {
   const detail = useSelector((state) => state.todos.todos.find(item => item.id === parseInt(param.id)));
 
   return (
-    <FRAME>
+    <StMiniFrame>
       {detail && (
-        <STBOX>
+        <StMiniBox>
           id : {detail.id}
           <br />
           제목 : {detail.title}
           <br />
           내용 : {detail.content}
           <br />
-          <RETURN>
-            <Link to="/todos">이전으로</Link>
-          </RETURN>
-        </STBOX>
+          <StReturnText>
+            <StButton style = {{}}>
+            <Link to="/todos" style={{ textDecoration: 'none', color: 'white' }}>이전으로</Link>
+            </StButton>
+            <StButton style = {{}}>
+            <Link to= {`/todos/${param.id}/EditTodo`} style={{ textDecoration: 'none', color: 'white' }}>수정</Link>
+            </StButton>
+          </StReturnText>
+        </StMiniBox>
       )}
-    </FRAME>
+    </StMiniFrame>
   )
 }
 
