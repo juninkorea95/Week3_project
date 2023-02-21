@@ -7,7 +7,7 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 export const __addTodo = createAsyncThunk(
   'todos/addTodo', 
   async (newTodo) => {
-    await api.post(`${SERVER_URL}/todos`, newTodo); 
+    await api.post('/todos', newTodo); 
     return newTodo;
   }
 );
@@ -25,7 +25,7 @@ export const __fetchTodos = createAsyncThunk(
 export const __deleteTodo = createAsyncThunk(
   'todos/deleteTodo',
   async (id) => {
-    await api.delete(`${SERVER_URL}/todos/${id}`); 
+    await api.delete(`/todos/${id}`); 
     return id;
   }
 );
@@ -35,7 +35,7 @@ export const __editTodo = createAsyncThunk (
   'todos/editTodo',
   async (updatedTodo) => {
     const {id, ...data} = updatedTodo
-    await api.patch(`${SERVER_URL}/todos/${id}`, data);
+    await api.patch(`/todos/${id}`, data);
     return updatedTodo;
   }
 );
