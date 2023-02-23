@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StInputBox,StButtonBox, StButton, StTextBox, StTopBox } from '../styles/styleCollection';
-import axios from 'axios';
+// import axios from 'axios';
 import { useNavigate } from 'react-router';
+import { loginInstance } from '../axios/api';
 
 
 function Register () {
@@ -49,7 +50,7 @@ function Register () {
     const joinHandler = async () => {
         if (isId === true && isPw === true) {
             try {
-                await axios.post('/register', { id: idValue, password: pwValue });
+                await loginInstance.post('/register', { id: idValue, password: pwValue });
                 alert('회원가입 성공 !!');
                 navigate('/');
             } catch (error) {
