@@ -1,31 +1,62 @@
-import { StTopBox, StTextBox, StInputBox, StButtonBox, StButton } from "../styles/styleCollection"
-import useInput from "../hooks/useInput"
-import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { __addUser } from "../redux/modules/usersSlice"
+import React, { useState } from 'react';
+import { StInputBox,StButtonBox, StButton, StTextBox, StTopBox } from '../styles/styleCollection';
+import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 
 function Register () {
+    const [idValue, setIdValue] = useState('');
+    const [pwValue, setPwValue] = useState('');
+    // 오류 메세지
+    const [idMessage, setIdMessage] = useState('');
+    const [pwMessage, setPwMessage] = useState('');
 
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
+    // 유효성 검사 둘다 true 일시 버튼 클릭 가넝
+    const [isId, setIsId] = useState(false);
+    const [isPw, setIsPw] = useState(false);
 
-    const [newId, onChangeNewIdHandler] = useInput('')
-    const [newPw, onChangeNewPwHandler] = useInput('')
+    const navigate = useNavigate();
 
-    const onSubmitButtonHandler = (newUser) => {
-        if (newUser.newId ==='' || newUser.newPw === '') {
-            alert ('ID, 비밀번호를 모두 입력해 주세요!')
+    // id input change
+    const onChangeId = (e) => {
+        setIdValue(e.target.value);
+
+        const idRegex = /^(?=.*?[0-9])(?=.*?[a-z]).{5,}$/;
+
+        if (!idRegex.test(e.target.value)) {
+            setIdMessage('영어 소문자, 숫자 각각 1개 이상, 5자리 이상이여야 합니다.');
+            setIsId(false);
         } else {
-            dispatch(__addUser(newUser))
-            .then(()=>{
-                navigate('/')
-            })
-            .catch((error) => {
-                console.error('회원가입 실패', error)
-            })
+            setIdMessage('올바른 id 형식입니다');
+            setIsId(true);
         }
-    }
+    };
+    // pw input change
+    const onChangePw = (e) => {
+        setPwValue(e.target.value);
+        const idRegex = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+
+        if (!idRegex.test(e.target.value)) {
+            setPwMessage('패스워드는 최소 8자리 이상 영어 소문자, 숫자, 특수문자가 각각 1개 이상이여야 합니다.');
+            setIsPw(false);
+        } else {
+            setPwMessage('올바른 패스워드 형식입니다.');
+            setIsPw(true);
+        }
+    };
+
+    // 회원가입
+    const joinHandler = async () => {
+        if (isId === true && isPw === true) {
+            try {
+                await axios.post('/register', { id: idValue, password: pwValue });
+                alert('회원가입 성공 !!');
+                navigate('/');
+            } catch (error) {
+                alert(error.response.data.message);
+            }
+        }
+    };
 
 
     return (
@@ -37,48 +68,35 @@ function Register () {
 
             <StTextBox>회원 가입</StTextBox>
 
-                <form
-                onSubmit={(e) => {
-                    e.preventDefault()
-
-                    const newUser = {
-                        id : Date.now(),
-                        newId : newId,
-                        newPw : newPw,
-                    }
-
-                    onSubmitButtonHandler(newUser)
-                }}
-                >
                 <StTextBox style ={{height: '20px'}}>ID : </StTextBox>
                 <StInputBox>
                 <input 
                 style = {{height: '40px'}}
                 type ="text"
-                value = {newId}
-                onChange = {onChangeNewIdHandler}
+                value = {idValue}
+                onChange = {onChangeId}
                 />
                 </StInputBox>
-                
+                <span>{idMessage}</span>
 
                 <StTextBox style ={{height: '20px'}}>Password : </StTextBox>
                 <StInputBox>
                 <input 
                 style = {{height: '40px'}}
                 type ="password"
-                value = {newPw}
-                onChange = {onChangeNewPwHandler}
+                value = {pwValue}
+                onChange = {onChangePw}
                 />
                 </StInputBox>
+                <span>{pwMessage}</span>
                 
 
             <StButtonBox style ={{marginTop : 0}}>
-            <StButton>가입 완료</StButton>
+            <StButton type="button" onClick={joinHandler}>가입 완료</StButton>
             </StButtonBox>
-            </form>
 
         </>
-    )
+    );
 }
 
-export default Register
+export default Register;
