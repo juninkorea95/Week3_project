@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StTopBox = styled.div`
-    background-Color: pink;
+    background-Color: rgb(230, 270, 130);
     width: 1200px;
     height: 50px;
     border: 1px solid green;
@@ -23,7 +23,7 @@ const StBox = styled.div`
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: ${props => props.justifyContent || 'space-between'};
+    justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
     margin: 0 auto;
@@ -83,6 +83,15 @@ const StButton = styled.button`
         margin-right: 20px;
 `
 
+const StLoginBox = styled.div`
+    width: 800px;
+    height: 600px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 70px;
+`
 
-export {StTopBox, StBox, StInputBox, StTextBox, StButtonBox, StButton}
+
+export {StTopBox, StBox, StInputBox, StTextBox, StButtonBox, StButton, StLoginBox}
 

@@ -5,10 +5,27 @@ import { useNavigate } from 'react-router';
 import styled from 'styled-components';
 
 const StyledStTextBox = styled(StTextBox)`
+  width  : ${(props) => props.width || '600px'};
   height: ${(props) => props.height || '50px'};
   font-size: ${(props) => props.fontSize || '10px'};
   align-items: ${(props) => props.alignItems || 'flex-start'};
   color: ${(props) => props.color || 'red'};
+`
+
+const StNewTopBox = styled(StTopBox)`
+width: ${(props) => props.width || '600px'};
+`
+const StNewTextBox = styled(StTextBox)`
+width: ${(props) => props.width || '600px'};
+`
+
+const StNewInputBox = styled(StInputBox)`
+width: ${(props) => props.width || '600px'};
+`
+
+const StNewButtonBox = styled(StButtonBox)`
+width: ${(props) => props.width || '600px'};
+justify-content: ${(props) => props.justifyContent || 'center'};
 `
 
 
@@ -63,47 +80,50 @@ function Register () {
             } catch (error) {
                 alert(error.response.data.message);
             }
+        } else {
+            alert ('규정에 맞는 아이디와 비밀번호를 입력해 주세요!')
         }
     };
 
 
     return (
-        <>
-            <StTopBox style = {{backgroundColor: 'rgb(230, 270, 130)', fontWeight:'bold'}}>
+        <div style ={{marginTop: '70px'}}>
+            <StNewTopBox style = {{backgroundColor: 'rgb(230, 270, 130)', fontWeight:'bold'}}>
                 <div>My Todo List</div>
                 <div>React</div>
-            </StTopBox>
+            </StNewTopBox>
 
-            <StTextBox>회원 가입</StTextBox>
+            <StNewTextBox>회원 가입</StNewTextBox>
 
-                <StTextBox style ={{height: '20px'}}>ID : </StTextBox>
-                <StInputBox>
+                <StNewTextBox style ={{height: '20px'}}>ID : </StNewTextBox>
+                <StNewInputBox>
                 <input 
                 style = {{height: '40px'}}
                 type ="text"
                 value = {idValue}
                 onChange = {onChangeId}
                 />
-                </StInputBox>
+                </StNewInputBox>
                 <StyledStTextBox>{idMessage}</StyledStTextBox>
 
-                <StTextBox  style ={{height: '20px'}}>Password : </StTextBox>
-                <StInputBox>
+                <StNewTextBox  style ={{height: '20px'}}>Password : </StNewTextBox>
+                <StNewInputBox>
                 <input 
                 style = {{height: '40px'}}
                 type ="password"
                 value = {pwValue}
                 onChange = {onChangePw}
                 />
-                </StInputBox>
+                </StNewInputBox>
                 <StyledStTextBox>{pwMessage}</StyledStTextBox>
                 
 
-            <StButtonBox style ={{marginTop : 0}}>
+            <StNewButtonBox style ={{marginTop : 0}}>
             <StButton type="button" onClick={joinHandler}>가입 완료</StButton>
-            </StButtonBox>
+            <StButton onClick={()=>{navigate('/')}}>이전으로</StButton>
+            </StNewButtonBox>
 
-        </>
+        </div>
     );
 }
 

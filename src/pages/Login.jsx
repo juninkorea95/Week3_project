@@ -1,10 +1,27 @@
-import { StTopBox, StTextBox, StInputBox, StButtonBox, StButton } from "../styles/styleCollection"
+import { StTopBox, StTextBox, StInputBox, StButtonBox, StButton, StLoginBox } from "../styles/styleCollection"
 import useInput from "../hooks/useInput"
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import styled from "styled-components";
+
+const StNewTopBox = styled(StTopBox)`
+width: ${(props) => props.width || '600px'};
+`
+const StNewTextBox = styled(StTextBox)`
+width: ${(props) => props.width || '600px'};
+`
+
+const StNewInputBox = styled(StInputBox)`
+width: ${(props) => props.width || '600px'};
+`
+
+const StNewButtonBox = styled(StButtonBox)`
+width: ${(props) => props.width || '600px'};
+justify-content: ${(props) => props.justifyContent || 'center'};
+`
 
 function Login () {
     const navigate = useNavigate()
@@ -67,43 +84,43 @@ function Login () {
    
     
     return (
-        <>
-            <StTopBox style = {{backgroundColor: 'rgb(230, 270, 130)', fontWeight:'bold'}}>
+        <StLoginBox>
+            <StNewTopBox style = {{fontWeight:'bold'}}>
                 <div>My Todo List</div>
                 <div>React</div>
-            </StTopBox>
+            </StNewTopBox>
 
-            <StTextBox>Login</StTextBox>
+            <StNewTextBox>Login😊</StNewTextBox>
 
                 
-                <StTextBox style ={{height: '20px'}}>ID : </StTextBox>
-                <StInputBox>
+                <StNewTextBox style ={{height: '20px'}}>ID : </StNewTextBox>
+                <StNewInputBox>
                 <input 
                 style = {{height: '40px'}}
                 type ="text"
                 value = {id}
                 onChange = {onChangeIdHandler}
                 />
-                </StInputBox>
+                </StNewInputBox>
                 
 
-                <StTextBox style ={{height: '20px'}}>Password : </StTextBox>
-                <StInputBox>
+                <StNewTextBox style ={{height: '20px'}}>Password : </StNewTextBox>
+                <StNewInputBox>
                 <input 
                 style = {{height: '40px'}}
                 type ="password"
                 value = {pw}
                 onChange = {onChangePwHandler}
                 />
-                </StInputBox>
+                </StNewInputBox>
                 
 
-            <StButtonBox style ={{marginTop : 0}}>
+            <StNewButtonBox style ={{marginTop : 0}}>
             <StButton type= 'button' onClick={loginHandler}>로그인</StButton>
             <StButton onClick={()=>{navigate('/register')}}>회원 가입</StButton>
-            </StButtonBox>
+            </StNewButtonBox>
 
-        </>
+        </StLoginBox>
     )
 }
 

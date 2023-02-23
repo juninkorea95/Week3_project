@@ -34,7 +34,7 @@ function AddTodo() {
     return (
     <>
         <StTopBox>
-            <div><Link to = {`/home`} style={{ textDecoration: 'none', color: 'gray' }}>Home</Link></div>
+            <div><Link to = {`/home`} style={{marginLeft: '10px', fontSize: '20px' }}>🏠</Link></div>
             <div>React</div>
         </StTopBox>
         
