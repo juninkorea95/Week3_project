@@ -39,6 +39,8 @@ function Login () {
                 setMessage(error.response.data.message);
                 alert(message)
             }
+        } else {
+            alert ('아이디와 비밀번호를 입력해 주세요!')
         }
     }
 
