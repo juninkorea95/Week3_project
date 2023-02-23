@@ -19,14 +19,15 @@ const StBox = styled.div`
     width: 1200px;
     height: 100px;
     border: 2px solid gray;
+    background-color: white;
     border-radius: 5px;
     display: flex;
-    align-Items: center;
-    justify-content: space-between;
-    padding-Left: 10px;
-    padding-Right: 10px;
+    align-items: center;
+    justify-content: ${props => props.justifyContent || 'space-between'};
+    padding-left: 10px;
+    padding-right: 10px;
     margin: 0 auto;
-    margin-Top: 30px;
+    margin-top: 30px;
 `
 const StInputBox = styled.div`
     width: 1200px;
@@ -37,7 +38,8 @@ const StInputBox = styled.div`
     padding-right: 10px;
     margin: 0 auto;
 
-    input[type="text"] {
+    input[type="text"],
+    input[type="password"] {
         background-color: #fff;
         border: 1px solid #ccc;
         padding: 10px;

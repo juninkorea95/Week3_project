@@ -5,8 +5,8 @@ function TopBox() {
     
     return <StTopBox>
 
-        <div className ="left-text">My Todo List</div>
-        <div className ="right-text">React</div>
+        <div>My Todo List</div>
+        <div>React</div>
       </StTopBox>
 
 }

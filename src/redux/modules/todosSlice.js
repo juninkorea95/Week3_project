@@ -1,13 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import api from '../../axios/api';
-
-const SERVER_URL = process.env.REACT_APP_SERVER_URL; 
+import {todoInstance} from '../../axios/api';
 
 // todo 추가 (개별 todo 조회도 이 함수를 이용함)
 export const __addTodo = createAsyncThunk(
   'todos/addTodo', 
   async (newTodo) => {
-    await api.post('/todos', newTodo); 
+    await todoInstance.post('/todos', newTodo); 
     return newTodo;
   }
 );
@@ -16,7 +14,7 @@ export const __addTodo = createAsyncThunk(
 export const __fetchTodos = createAsyncThunk(
   'todos/fetchTodos',
   async () => {
-    const { data } = await api.get('/todos'); 
+    const { data } = await todoInstance.get('/todos'); 
     return data;
   }
 );
@@ -25,7 +23,7 @@ export const __fetchTodos = createAsyncThunk(
 export const __deleteTodo = createAsyncThunk(
   'todos/deleteTodo',
   async (id) => {
-    await api.delete(`/todos/${id}`); 
+    await todoInstance.delete(`/todos/${id}`); 
     return id;
   }
 );
@@ -35,7 +33,7 @@ export const __editTodo = createAsyncThunk (
   'todos/editTodo',
   async (updatedTodo) => {
     const {id, ...data} = updatedTodo
-    await api.patch(`/todos/${id}`, data);
+    await todoInstance.patch(`/todos/${id}`, data);
     return updatedTodo;
   }
 );

@@ -1,4 +1,3 @@
-// import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { StTopBox, StBox, StButton } from '../styles/styleCollection';
@@ -23,7 +22,7 @@ function Todos() {
     <>
       <StTopBox>
         <div>
-          <Link to={`/`}
+          <Link to={`/home`}
           style={{ textDecoration: 'none', color: 'gray' }}>Home</Link>
         </div>
         <div>
