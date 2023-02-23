@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import { StInputBox,StButtonBox, StButton, StTextBox, StTopBox } from '../styles/styleCollection';
-// import axios from 'axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router';
-import { loginInstance } from '../axios/api';
+import styled from 'styled-components';
+
+const StyledStTextBox = styled(StTextBox)`
+  height: ${(props) => props.height || '50px'};
+  font-size: ${(props) => props.fontSize || '10px'};
+  align-items: ${(props) => props.alignItems || 'flex-start'};
+  color: ${(props) => props.color || 'red'};
+`
 
 
 function Register () {
@@ -12,7 +19,7 @@ function Register () {
     const [idMessage, setIdMessage] = useState('');
     const [pwMessage, setPwMessage] = useState('');
 
-    // 유효성 검사 둘다 true 일시 버튼 클릭 가넝
+    // 유효성 검사 둘다 true 일시 버튼 클릭 가능
     const [isId, setIsId] = useState(false);
     const [isPw, setIsPw] = useState(false);
 
@@ -50,7 +57,7 @@ function Register () {
     const joinHandler = async () => {
         if (isId === true && isPw === true) {
             try {
-                await loginInstance.post('/register', { id: idValue, password: pwValue });
+                await axios.post('http://3.38.191.164/register', { id: idValue, password: pwValue });
                 alert('회원가입 성공 !!');
                 navigate('/');
             } catch (error) {
@@ -78,9 +85,9 @@ function Register () {
                 onChange = {onChangeId}
                 />
                 </StInputBox>
-                <span>{idMessage}</span>
+                <StyledStTextBox>{idMessage}</StyledStTextBox>
 
-                <StTextBox style ={{height: '20px'}}>Password : </StTextBox>
+                <StTextBox  style ={{height: '20px'}}>Password : </StTextBox>
                 <StInputBox>
                 <input 
                 style = {{height: '40px'}}
@@ -89,7 +96,7 @@ function Register () {
                 onChange = {onChangePw}
                 />
                 </StInputBox>
-                <span>{pwMessage}</span>
+                <StyledStTextBox>{pwMessage}</StyledStTextBox>
                 
 
             <StButtonBox style ={{marginTop : 0}}>
